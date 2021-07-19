@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Controller,
   Get,
@@ -10,6 +11,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -27,13 +30,13 @@ export class CoursesController {
 
   @Post()
   @HttpCode(HttpStatus.NO_CONTENT)
-  create(@Body() body) {
-    return this.coursesService.create(body);
+  create(@Body() CreateCourseDto: CreateCourseDto) {
+    return this.coursesService.create(CreateCourseDto);
   }
 
   @Patch('/:id')
-  update(@Param('id') id, @Body() body) {
-    return this.coursesService.update(id, body);
+  update(@Param('id') id, @Body() UpdateCourseDto: UpdateCourseDto) {
+    return this.coursesService.update(id, UpdateCourseDto);
   }
 
   @Delete('/:id')
