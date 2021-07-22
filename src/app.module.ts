@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoursesModule } from './courses/courses.module';
 
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
 @Module({
   imports: [
     CoursesModule,
@@ -16,6 +18,7 @@ import { CoursesModule } from './courses/courses.module';
       database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
+      namingStrategy: new SnakeNamingStrategy(),
     }),
   ],
   controllers: [AppController],
